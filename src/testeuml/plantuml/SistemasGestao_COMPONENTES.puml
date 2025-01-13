@@ -1,0 +1,40 @@
+@startuml
+'Modelo de Contexto
+package "Sistemas de Gestão" {
+    [Sistema de Gestão de Usuários]
+    [Sistema de Gestão de Bibliotecas]
+}
+
+package "SPA" {
+    [Web App]
+    [Web App] --> [Sistemas de Gestão]
+}
+
+package "Usuários" {
+    [Usuários] --> [SPA] : Acessa Sistemas de Gestão
+}
+
+'Modelo de Componentes
+package "Estrutural" {
+    [Controlador de Gestão Bibliotecas] --> [Serviço de Autenticação]
+    [Controlador de Gestão Bibliotecas] --> [Serviço de Autorização]
+    [Controlador de Gestão Usuários] --> [Serviço de Autenticação]
+    [Controlador de Gestão Usuários] --> [Serviço de Autorização]
+}
+
+
+'Modelo de Componentes
+package "Sistema de Gestão de Usuários" {
+    [API Serviço de Cadastro de Usuários] --> [Cadastros de Usuários]
+    [API Serviço de Cadastro de Usuários] --> [Consulta de Permissões]
+}
+
+'Modelo de Componentes
+package "Sistema de Gestão de Bibliotecas" {
+    [Sistemas de Gestão] --> [Estrutural]
+    [API Serviço de Cadastro de Bibliotecas] --> [Cadastros de Bibliotecas]
+    [API de Cadastro de Livros] --> [Cadastros de Livros]
+}
+
+
+@enduml
